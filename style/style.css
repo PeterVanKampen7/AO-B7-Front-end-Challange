@@ -11,6 +11,8 @@ body{
     font-family: Roboto, sans-serif;;
 }
 
+
+/* Homepage style */
 .card-header{
     font-weight: 800;
 }
@@ -119,3 +121,78 @@ body{
         margin: 0 auto;
     }
 }
+/* End homepage style */
+
+/* Start stellingen page style */
+
+.stellingen-container{
+    width: 100vw;
+    height: 100vh;
+}
+
+.stellingen-container .header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.controls{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    position: absolute;
+    bottom: 50px;
+    left: 0px;
+    width: 100vw;
+}
+.controls a{
+    min-width: 100px;
+}
+
+.context-modal{
+    display: none;
+    grid-template-rows: 1fr 70px;
+    position: absolute;
+    inset: 20px;
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    overflow: hidden;
+    z-index: 10;
+    box-shadow: 0 0 3px 0 #999;
+    padding: 30px;
+}
+.context-modal .context-modal-content{
+    height: 100%;
+    overflow: scroll;
+}
+.context-modal .context-modal-controls{
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #333;
+    padding-top: 15px;
+}
+.context-modal .context-modal-controls button{
+    padding: 8px 33px;
+}
+.party_info{
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+.party_info .party_position{
+    min-width: 150px;
+    text-align: center;
+    border-radius: 100px;
+}
+.party_opinion{
+    padding: 0 35px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+/* End stellingen page style */

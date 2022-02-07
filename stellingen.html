@@ -4,9 +4,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style/style.css">
+    <script src="http://stemwijzer.dvc-icta.nl/data.js"></script>
+    <script defer src="script/stellingen_page.js"></script>
     <title>Stemwijzer</title>
 </head>
 <body>
-    
+    <div class="stellingen-container w3-white">
+        <div class="header w3-bottombar w3-border-blue">
+            <a href="#" class="w3-button w3-round-xlarge w3-text-white w3-blue" previous>
+                Vorige
+            </a>
+            <h2 class="w3-text-black w3-margin-left">
+                <span class="w3-text-blue">Stem</span>Wijzer
+            </h2>
+            <div class="progress w3-round-xxlarge w3-padding w3-gray w3-text-black" progress-counter>
+                x/y
+            </div>
+        </div>
+
+        
+        <div class="content w3-container" logic-container>
+            <h2 class="w3-text-blue w3-section" stelling-naam>Placeholder?</h2>
+
+            <h2 class="w3-text-black w3-section" stelling-context>Lorem ipsum dolor sit amet consectetur, adipisicing elit. At, illo obcaecati est reiciendis dolore assumenda non laborum distinctio animi ut explicabo, magnam tempore cupiditate error, ea asperiores dolor necessitatibus commodi.</h2>
+
+            <div class="extra-buttons w3-section" extra-buttons>
+                <button class="extra-button w3-button w3-text-black w3-sand w3-padding-large" onclick="show_context()">
+                    <i class="fas fa-comments w3-margin-right"></i>
+                    Wat vinden de partijen?
+                </button>
+                <a href="https://letmegooglethat.com/?q=politiek" class="extra-button w3-button w3-text-black w3-sand w3-padding-large" meer-weten>
+                    <i class="fab fa-google w3-margin-right"></i>
+                    Meer weten?
+                </a>
+            </div>
+
+            <div class="context-modal" context-modal>
+                <div class="context-modal-content" context-modal-content>
+
+                </div>
+                <div class="context-modal-controls">
+                    <button class="w3-button w3-blue w3-text-white" onclick="hide_context()">Sluiten</button>
+                </div>
+            </div>
+            
+            <div class="controls" controls="controls">
+                <button class="controls-disagree w3-red w3-button w3-round-xxlarge w3-padding-large" controls-disagree onclick="nextSlide('oneens')">Oneens</button>
+                <button class="controls-neutral w3-gray w3-text-white w3-button w3-round-xxlarge w3-padding-large" controls-neutral onclick="nextSlide('neutraal')">Geen mening</button>
+                <button class="controls-agree w3-green w3-button w3-round-xxlarge w3-padding-large" controls-agree onclick="nextSlide('eens')">Eens</button>
+            </div>
+        </div>
+        
+    </div>  
 </body>
 </html>
