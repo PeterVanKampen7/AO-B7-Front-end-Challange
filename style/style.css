@@ -1,0 +1,121 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-image: url('../resources/bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    font-family: Roboto, sans-serif;;
+}
+
+.card-header{
+    font-weight: 800;
+}
+.card-subheader{
+    font-weight: 700;
+}
+.accessibility-text{
+    font-size: 10px;
+}
+.card-button{
+    font-size: 24px;
+}
+.accessibility{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.accessibility-link-container{
+    display: block;
+    width: max-content;
+}
+
+.secondary-card{
+    background: #222;
+}
+
+.all-container{
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.all-container::-webkit-scrollbar { 
+    display: none; /* Chrome, Safari and Opera */
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px){
+    .card{
+        width: 60vw;
+        height: max-content;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        border-radius: 20px;
+        z-index: 3;
+    }
+    .secondary-card{
+        background: rgba(0,0,0,.85);
+        display: grid;
+        grid-template-columns: 1fr 28vw;
+        grid-gap: 10px;
+        width: 80vw;
+        height: max-content;
+        position: absolute;
+        top: 100px;
+        right: 30px;
+        border-radius: 20px;
+        padding-bottom: 50px!important;
+    }
+    .secondary-card .left-column{
+        margin-top: 35vw;
+    }
+    footer{
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+
+    }
+}
+@media only screen and (min-width: 1024px) and (max-width: 2000px){
+    .card{
+        width: 40vw;
+        height: max-content;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        border-radius: 20px;
+        z-index: 3;
+    }
+    .secondary-card{
+        background: rgba(0,0,0,.85);
+        display: grid;
+        grid-template-columns: 1fr 28vw;
+        grid-gap: 10px;
+        width: 70vw;
+        height: max-content;
+        position: absolute;
+        top: 100px;
+        right: 30px;
+        border-radius: 20px;
+        padding-bottom: 50px!important;
+    }
+    .secondary-card .left-column{
+        margin-top: 25vw;
+    }
+    footer{
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+
+    }
+    .all-container{
+        width: 85vw;
+        margin: 0 auto;
+    }
+}

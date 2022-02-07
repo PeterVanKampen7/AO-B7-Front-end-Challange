@@ -5,12 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <link rel="stylesheet" href="style/style.css">
-    <script src="script/script.js"></script>
-    <script defer src="http://stemwijzer.dvc-icta.nl/data.js"></script>
+    <script src="http://stemwijzer.dvc-icta.nl/data.js"></script>
+    <script defer src="script/start_page.js"></script>
     <title>Stemwijzer</title>
 </head>
 <body>
-    
+    <div class="all-container">
+        <div class="card w3-white w3-padding-large">
+            <h2 class="card-header w3-text-black w3-section">
+                <span class="w3-text-blue">Stem</span>Wijzer
+            </h2>
+            <h4 class="card-subheader w3-section">Tweede kamer verkiezingen 2021</h4>
+            <p class="w3-section">Test je politieke voorkeur aan de hand van deze 30 stellingen</p>
+            <a href="stellingen.html" class="card-button w3-button w3-blue w3-text-white w3-padding-large w3-round-xlarge w3-section">Start</a>
+            <a href="#" class="accessibility-link-container w3-button w3-text-blue w3-round-xxlarge w3-border w3-border-blue">
+                <div class="accessibility">
+                    <div class="icon-container">
+                        <i class="fas fa-universal-access"></i>
+                    </div>
+                    <p class="accessibility-text w3-text-gray w3-margin-left">
+                        Ga naar de toegankelijke versie voor mensen met een visuele beperking
+                    </p>
+                </div>
+            </a>   
+        </div>
+        <div class="secondary-card w3-padding-large">
+            <div class="left-column">
+                <p class="w3-text-white">
+                    Bij StemWijzer nemen we privacy en het kiesrecht zeer serieus. Je krijgt straks eerst alle stellingen te zien. Daarna vragen we je toestemming om bepaalde gegevens te delen. Dat is niet verplicht. Ook zonder akkoord te gaan, kun je de uitslag bekijken. Verder gebruiken we Google Analytics om de StemWijzer te verbeteren. We hebben Google Analytics op een privacyvriendelijke manier ingesteld.
+                </p>
+                <p class="w3-text-white w3-margin-top">
+                    Lees meer over ons volledig privacy beleid:
+                </p>
+                <a href="privacy.html" class="w3-button w3-sand w3-text-black w3-padding-medium w3-round-xlarge w3-margin-top">
+                    Privacybeleid
+                </a>
+            </div>
+            <div class="right-column">
+                <h4 class="w3-margin-top w3-text-white">Deze partijen doen mee aan de verkiezingen:</h4>
+                <ul class="participants w3-ul w3-text-white" participant-list>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+    <footer class="w3-text-white w3-black w3-center w3-padding-large">
+        StemWijzer Peter van Kampen ® 2022. Alle rechten voorbehouden.
+    </footer>
 </body>
 </html>
