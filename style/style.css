@@ -155,7 +155,7 @@ body{
     display: none;
     grid-template-rows: 1fr 70px;
     position: absolute;
-    inset: 20px;
+    inset: 40px;
     border-radius: 10px;
     border: 1px solid black;
     background-color: white;
@@ -194,5 +194,14 @@ body{
     padding: 0 35px;
     margin-bottom: 30px;
     margin-top: 10px;
+}
+.result-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.result-row span{
+    display: flex;
+    align-items: center;
 }
 /* End stellingen page style */

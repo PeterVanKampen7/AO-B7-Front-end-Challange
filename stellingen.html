@@ -15,9 +15,9 @@
 <body>
     <div class="stellingen-container w3-white">
         <div class="header w3-bottombar w3-border-blue">
-            <a href="#" class="w3-button w3-round-xlarge w3-text-white w3-blue" previous>
+            <button class="w3-button w3-round-xlarge w3-text-white w3-blue" onclick="previousSlide()">
                 Vorige
-            </a>
+            </button>
             <h2 class="w3-text-black w3-margin-left">
                 <span class="w3-text-blue">Stem</span>Wijzer
             </h2>
@@ -53,9 +53,9 @@
             </div>
             
             <div class="controls" controls="controls">
-                <button class="controls-disagree w3-red w3-button w3-round-xxlarge w3-padding-large" controls-disagree onclick="nextSlide('oneens')">Oneens</button>
-                <button class="controls-neutral w3-gray w3-text-white w3-button w3-round-xxlarge w3-padding-large" controls-neutral onclick="nextSlide('neutraal')">Geen mening</button>
-                <button class="controls-agree w3-green w3-button w3-round-xxlarge w3-padding-large" controls-agree onclick="nextSlide('eens')">Eens</button>
+                <button class="controls-disagree w3-red w3-button w3-round-xxlarge w3-padding-large" controls-disagree onclick="nextSlide('contra')">Oneens</button>
+                <button class="controls-neutral w3-gray w3-text-white w3-button w3-round-xxlarge w3-padding-large" controls-neutral onclick="nextSlide('none')">Geen mening</button>
+                <button class="controls-agree w3-green w3-button w3-round-xxlarge w3-padding-large" controls-agree onclick="nextSlide('pro')">Eens</button>
             </div>
         </div>
         

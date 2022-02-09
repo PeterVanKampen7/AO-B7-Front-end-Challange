@@ -18,13 +18,19 @@ renderStelling(stellingNum, stellingen);
 
 function nextSlide(stance){
     results[stellingNum] = stance;
-    console.log(stellingen.length);
     if(stellingNum + 1 < stellingen.length){  
         stellingNum++;     
         renderStelling(stellingNum, stellingen);
     } else {
-        console.log(results)
+        getResults();
     }  
+}
+
+function previousSlide(){
+    if(stellingNum > 0){
+        stellingNum--;     
+        renderStelling(stellingNum, stellingen);
+    }
 }
 
 function renderStelling(count, stellingen){
@@ -63,4 +69,34 @@ function show_context(){
 }
 function hide_context(){
     context_modal.style.display = 'none';
+}
+
+function getResults(){
+    let score_counter = [];
+    for(i = 0; i < parties.length; i++){
+        let partyname = parties[i]['name']
+        score_counter[partyname] = 0;
+    }
+    
+    for(i = 0; i < stellingen.length; i++){
+        for(j = 0; j < stellingen[i]['parties'].length; j++){
+            if(results[i] == stellingen[i]['parties'][j]['position']){
+                let partyname = stellingen[i]['parties'][j]['name'];
+                score_counter[partyname]++;
+            }
+        }
+    }
+    renderResults(score_counter);
+}
+
+function renderResults(score_counter){
+    let newHTML = '<ul class="w3-ul w3-margin-top w3-margin-bottom">';
+    for(i = 0; i < parties.length; i++){
+        let partyname = parties[i]['name']
+        let num = Math.floor((100 / stellingen.length) * score_counter[partyname]);
+        let percent = `${num}%`;
+        newHTML += `<li class="result-row">${partyname}<span>${percent}<progress class="w3-margin-left" value="${num}" max="100"></progress></span></li>`;
+    }
+    newHTML += '</ul>';
+    document.querySelector('[logic-container]').innerHTML = newHTML;
 }
