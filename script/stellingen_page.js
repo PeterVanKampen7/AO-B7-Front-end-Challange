@@ -15,6 +15,7 @@ let stellingen = subjects;
 let results = [];
 let partyWeight = [];
 let stellingWeight = []
+const KLEINGROOTBREAKPOINT = 10;
 
 renderStelling(stellingNum, stellingen);
 
@@ -29,10 +30,12 @@ function nextSlide(stance){
 }
 
 function previousSlide(){
-    if(stellingNum > 0){
+    if(stellingNum > 0 && stellingNum < stellingen.length){
+
         stellingNum--;     
         renderStelling(stellingNum, stellingen);
-    }
+
+    } 
 }
 
 function renderStelling(count, stellingen){
@@ -74,10 +77,20 @@ function hide_context(){
 }
 
 function partySelect(){
+    previous_question.remove();
+    progress.remove();
+
     let content = `
     <h2>Welke partijen wilt u meenemen in uw resultaat? </h2>
-    <button class='w3-button w3-blue w3-text-white w3-round-xlarge w3-section' onclick='allParties()'>Alle partijen</button>
-    `;
+    <div class='party-select-controls'>
+        <div class='party-select-left-controls'>
+            <button class='w3-button w3-blue w3-text-white w3-round-xlarge w3-section' onclick='selectParties("all")'>Alle partijen</button>
+            <button class='w3-button w3-blue w3-text-white w3-round-xlarge w3-section' onclick='selectParties("big")'>Grote partijen</button>
+            <button class='w3-button w3-blue w3-text-white w3-round-xlarge w3-section' onclick='selectParties("small")'>Kleine partijen</button>
+            <button class='w3-button w3-blue w3-text-white w3-round-xlarge w3-section' onclick='selectParties("secular")'>Seculaire partijen</button>
+        </div>
+        <button class='w3-button w3-blue w3-text-white w3-padding-large w3-round-xlarge w3-section' disabled onclick='extraWeight()' next-step-button>Volgende stap</button>  
+    </div>`;
     for(i = 0; i < parties.length; i++){
         content += `<div class='w3-section party-weight-choice'>   
         <label for="${parties[i].name}">   
@@ -85,16 +98,68 @@ function partySelect(){
         ${parties[i].name}</label>
         </div>`;
     }
-    content += `<button class='w3-button w3-blue w3-text-white w3-padding-large w3-round-xlarge w3-section' onclick='extraWeight()'>Volgende stap</button>`;
+    content += ``;
     document.querySelector('[logic-container]').innerHTML = content;
+
+    document.querySelectorAll('.party-weight-choice-input').forEach(item => {
+        item.addEventListener('change', event => {
+            console.log('tetetet');
+            const button = document.querySelector('[next-step-button]');
+            button.disabled = false;
+        });
+    });
 }
 
-function allParties(){
+function selectParties(arg){
     let allParties = document.querySelectorAll('input.party-weight-choice-input');
     allParties = Array.from(allParties);
-    for(i = 0; i < allParties.length; i++){
-        allParties[i].checked = true;
+
+    let bigParties = [];
+    let smallParties = [];
+
+    let secularParties = [];
+
+    for(i = 0; i < parties.length; i++){
+        if(parties[i]['size'] >= KLEINGROOTBREAKPOINT){
+            bigParties.push(parties[i]['name']);
+        } else {
+            smallParties.push(parties[i]['name']);
+        }
+
+        if(parties[i]['secular'] == true){
+            secularParties.push(parties[i]['name']);
+        }
     }
+
+    if(arg == 'big'){
+        for(i = 0; i < allParties.length; i++){
+            allParties[i].checked = false;
+            if(bigParties.includes(allParties[i].value)){
+                allParties[i].checked = true;
+            }         
+        }
+    } else if (arg == 'small'){
+        for(i = 0; i < allParties.length; i++){
+            allParties[i].checked = false;
+            if(smallParties.includes(allParties[i].value)){
+                allParties[i].checked = true;
+            }         
+        }
+    } else if(arg == 'secular'){
+        for(i = 0; i < allParties.length; i++){
+            allParties[i].checked = false;
+            if(secularParties.includes(allParties[i].value)){
+                allParties[i].checked = true;
+            }         
+        }
+    } else {
+        for(i = 0; i < allParties.length; i++){
+            allParties[i].checked = true;
+        }
+    }
+    
+    const button = document.querySelector('[next-step-button]');
+    button.disabled = false;
 }
 
 function extraWeight(){
@@ -102,14 +167,16 @@ function extraWeight(){
 
     let content = `
     <h2> Zijn er onderwerpen die je extra belangrijk vind?</h2>
-    `;
+    <div class='weight-next-button'>
+        <button class='w3-button w3-blue w3-text-white w3-padding-large w3-round-xlarge w3-section' onclick='getResults()'>Volgende stap</button>
+    </div>`;
     for(i = 0; i < stellingen.length; i++){
         content += `<div class='w3-section subject-weight-choice'>      
         <input type="checkbox" id="${stellingen[i].title}" name="${stellingen[i].title}" value="${stellingen[i].title}" class="stelling-weight-choice-input">
         <label for="${stellingen[i].title}">${stellingen[i].title}</label>
         </div>`;
     }
-    content += `<button class='w3-button w3-blue w3-text-white w3-padding-large w3-round-xlarge w3-section' onclick='getResults()'>Volgende stap</button>`;
+    content += ``;
     document.querySelector('[logic-container]').innerHTML = content;
 }
 

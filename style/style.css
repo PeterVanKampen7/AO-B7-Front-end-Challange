@@ -108,7 +108,7 @@ body{
         padding-bottom: 50px!important;
     }
     .secondary-card .left-column{
-        margin-top: 25vw;
+        margin-top: 27vw;
     }
     footer{
         position: fixed;
@@ -215,5 +215,14 @@ body{
 .party-weight-choice label, .subject-weight-choice label{
     font-size: 18px;
     margin-left: 10px;
+}
+.party-select-controls{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.weight-next-button{
+    display: flex;
+    justify-content: flex-end;
 }
 /* End stellingen page style */
