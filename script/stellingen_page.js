@@ -32,7 +32,7 @@ function nextSlide(stance){
 
     controls_none.classList.add('w3-white');
     controls_none.classList.remove('w3-blue');
-    
+
     results[stellingNum] = stance;
     if(stellingNum + 1 < stellingen.length){  
         stellingNum++;     
@@ -258,7 +258,10 @@ function getStellingWeight(){
 }
 
 function renderResults(score_counter){
-    let newHTML = '<ul class="w3-ul w3-margin-top w3-margin-bottom">';
+    let newHTML = `
+    <h2 class="w3-section">Uw resulaten</h2>
+    <ul class="w3-ul w3-margin-top w3-margin-bottom">
+    `;
     for(i = 0; i < parties.length; i++){
         let partyname = parties[i]['name']
         if(partyWeight.includes(partyname)){
