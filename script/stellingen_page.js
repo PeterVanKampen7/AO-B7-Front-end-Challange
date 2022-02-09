@@ -262,14 +262,31 @@ function renderResults(score_counter){
     <h2 class="w3-section">Uw resulaten</h2>
     <ul class="result-list w3-ul w3-margin-top w3-margin-bottom">
     `;
-    for(i = 0; i < parties.length; i++){
-        let partyname = parties[i]['name']
+
+    let sortable_array = [];
+
+    for(var name in score_counter){
+        sortable_array.push([name, score_counter[name]]);
+    }
+    sortable_array.sort(function(a, b) {
+        return b[1] - a[1];
+    });
+
+    let loop_array = [];
+    for(i = 0; i < sortable_array.length; i++){
+        loop_array[sortable_array[i][0]] = sortable_array[i][1]
+    }
+    for(var partyname in loop_array){
         if(partyWeight.includes(partyname)){
-            let num = Math.floor((100 / (stellingen.length + stellingWeight.length)) * score_counter[partyname]);
+            let num = Math.floor((100 / (stellingen.length + stellingWeight.length)) * loop_array[partyname]);
             let percent = `${num}%`;
             newHTML += `<li class="result-row">${partyname}<span>${percent}<progress class="w3-margin-left" value="${num}" max="100"></progress></span></li>`;
-        }      
+        }
     }
-    newHTML += '</ul>';
+
+    newHTML += `
+    </ul>
+    <a href="index.html" class="w3-button w3-blue w3-text-white w3-padding-large w3-round-xlarge w3-section">Terug naar voorpagina</a>
+    `;
     document.querySelector('[logic-container]').innerHTML = newHTML;
 }
