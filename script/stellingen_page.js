@@ -8,6 +8,7 @@ let meer_weten = document.querySelector('[meer-weten]');
 let controls_disagree = document.querySelector('[controls-disagree]');
 let controls_neutral = document.querySelector('[controls-neutral]');
 let controls_agree = document.querySelector('[controls-agree]');
+let controls_none = document.querySelector('[controls-none]');
 
 
 let stellingNum = 0;
@@ -20,6 +21,18 @@ const KLEINGROOTBREAKPOINT = 10;
 renderStelling(stellingNum, stellingen);
 
 function nextSlide(stance){
+    controls_agree.classList.add('w3-green');
+    controls_agree.classList.remove('w3-blue');
+
+    controls_disagree.classList.add('w3-red');
+    controls_disagree.classList.remove('w3-blue');
+
+    controls_neutral.classList.add('w3-gray');
+    controls_neutral.classList.remove('w3-blue');
+
+    controls_none.classList.add('w3-white');
+    controls_none.classList.remove('w3-blue');
+    
     results[stellingNum] = stance;
     if(stellingNum + 1 < stellingen.length){  
         stellingNum++;     
@@ -27,6 +40,8 @@ function nextSlide(stance){
     } else {
         partySelect();
     }  
+
+    
 }
 
 function previousSlide(){
@@ -48,6 +63,20 @@ function renderStelling(count, stellingen){
     context_modal_content.innerHTML = renderContextModal(stellingen[count]['parties']);
 
     meer_weten.href = `https://letmegooglethat.com/?q=${stellingen[count]['title']}`;
+
+    if(results[count] == 'pro'){
+        controls_agree.classList.remove('w3-green');
+        controls_agree.classList.add('w3-blue');
+    } else if(results[count] == 'contra'){
+        controls_disagree.classList.remove('w3-red');
+        controls_disagree.classList.add('w3-blue');
+    } else if(results[count] == 'none'){
+        controls_neutral.classList.remove('w3-gray');
+        controls_neutral.classList.add('w3-blue');
+    } else if(results[count] == 'geen mening'){
+        controls_none.classList.remove('w3-white');
+        controls_none.classList.add('w3-blue');
+    }
 }
 
 function renderContextModal(standpunten){

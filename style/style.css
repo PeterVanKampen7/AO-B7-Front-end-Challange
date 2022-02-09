@@ -10,7 +10,9 @@ body{
     height: 100vh;
     font-family: Roboto, sans-serif;;
 }
-
+body.stellingen_page{
+    background-image: none;
+}
 
 /* Homepage style */
 .card-header{
