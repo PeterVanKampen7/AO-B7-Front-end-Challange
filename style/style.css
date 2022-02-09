@@ -227,4 +227,13 @@ body.stellingen_page{
     display: flex;
     justify-content: flex-end;
 }
+.result-list li:nth-child(1){
+    font-size: 32px;
+}
+.result-list li:nth-child(2){
+    font-size: 26px;
+}
+.result-list li:nth-child(3){
+    font-size: 20px;
+}
 /* End stellingen page style */

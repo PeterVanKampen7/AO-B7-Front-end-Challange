@@ -260,7 +260,7 @@ function getStellingWeight(){
 function renderResults(score_counter){
     let newHTML = `
     <h2 class="w3-section">Uw resulaten</h2>
-    <ul class="w3-ul w3-margin-top w3-margin-bottom">
+    <ul class="result-list w3-ul w3-margin-top w3-margin-bottom">
     `;
     for(i = 0; i < parties.length; i++){
         let partyname = parties[i]['name']
