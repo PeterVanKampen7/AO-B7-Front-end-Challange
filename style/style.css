@@ -204,4 +204,16 @@ body{
     display: flex;
     align-items: center;
 }
+.party-weight-choice, .subject-weight-choice{   
+    margin: 10px;
+    padding: 15px;
+    background-color: white;
+    box-shadow: -1px -1px 5px 1px #999;
+    display: flex;
+    align-items: center;
+}
+.party-weight-choice label, .subject-weight-choice label{
+    font-size: 18px;
+    margin-left: 10px;
+}
 /* End stellingen page style */

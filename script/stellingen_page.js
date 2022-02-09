@@ -13,6 +13,8 @@ let controls_agree = document.querySelector('[controls-agree]');
 let stellingNum = 0;
 let stellingen = subjects;
 let results = [];
+let partyWeight = [];
+let stellingWeight = []
 
 renderStelling(stellingNum, stellingen);
 
@@ -22,7 +24,7 @@ function nextSlide(stance){
         stellingNum++;     
         renderStelling(stellingNum, stellingen);
     } else {
-        getResults();
+        partySelect();
     }  
 }
 
@@ -71,7 +73,59 @@ function hide_context(){
     context_modal.style.display = 'none';
 }
 
+function partySelect(){
+    let content = `
+    <h2>Welke partijen wilt u meenemen in uw resultaat? </h2>
+    <button class='w3-button w3-blue w3-text-white w3-round-xlarge w3-section' onclick='allParties()'>Alle partijen</button>
+    `;
+    for(i = 0; i < parties.length; i++){
+        content += `<div class='w3-section party-weight-choice'>   
+        <label for="${parties[i].name}">   
+        <input type="checkbox" id="${parties[i].name}" name="${parties[i].name}" value="${parties[i].name}" class="party-weight-choice-input">
+        ${parties[i].name}</label>
+        </div>`;
+    }
+    content += `<button class='w3-button w3-blue w3-text-white w3-padding-large w3-round-xlarge w3-section' onclick='extraWeight()'>Volgende stap</button>`;
+    document.querySelector('[logic-container]').innerHTML = content;
+}
+
+function allParties(){
+    let allParties = document.querySelectorAll('input.party-weight-choice-input');
+    allParties = Array.from(allParties);
+    for(i = 0; i < allParties.length; i++){
+        allParties[i].checked = true;
+    }
+}
+
+function extraWeight(){
+    getPartyWeight();
+
+    let content = `
+    <h2> Zijn er onderwerpen die je extra belangrijk vind?</h2>
+    `;
+    for(i = 0; i < stellingen.length; i++){
+        content += `<div class='w3-section subject-weight-choice'>      
+        <input type="checkbox" id="${stellingen[i].title}" name="${stellingen[i].title}" value="${stellingen[i].title}" class="stelling-weight-choice-input">
+        <label for="${stellingen[i].title}">${stellingen[i].title}</label>
+        </div>`;
+    }
+    content += `<button class='w3-button w3-blue w3-text-white w3-padding-large w3-round-xlarge w3-section' onclick='getResults()'>Volgende stap</button>`;
+    document.querySelector('[logic-container]').innerHTML = content;
+}
+
+function getPartyWeight(){
+    let allParties = document.querySelectorAll('input.party-weight-choice-input');
+    allParties = Array.from(allParties);
+    for(i = 0; i < allParties.length; i++){
+        if(allParties[i].checked == true){
+            partyWeight.push(allParties[i].name);
+        }
+    }
+}
+
 function getResults(){
+    getStellingWeight();
+
     let score_counter = [];
     for(i = 0; i < parties.length; i++){
         let partyname = parties[i]['name']
@@ -80,22 +134,42 @@ function getResults(){
     
     for(i = 0; i < stellingen.length; i++){
         for(j = 0; j < stellingen[i]['parties'].length; j++){
-            if(results[i] == stellingen[i]['parties'][j]['position']){
-                let partyname = stellingen[i]['parties'][j]['name'];
-                score_counter[partyname]++;
+            let partyname = stellingen[i]['parties'][j]['name'];
+            if(partyWeight.includes(partyname)){
+                if(results[i] == stellingen[i]['parties'][j]['position']){
+                    let stellingName = stellingen[i]['title'];
+                    if(stellingWeight.includes(stellingName)){
+                        score_counter[partyname] += 2;
+                    } else {
+                        score_counter[partyname]++;
+                    }       
+                }
             }
+            
         }
     }
     renderResults(score_counter);
+}
+
+function getStellingWeight(){
+    let allStellingen = document.querySelectorAll('input.stelling-weight-choice-input');
+    allStellingen = Array.from(allStellingen);
+    for(i = 0; i < allStellingen.length; i++){
+        if(allStellingen[i].checked == true){
+            stellingWeight.push(allStellingen[i].name);
+        }
+    }
 }
 
 function renderResults(score_counter){
     let newHTML = '<ul class="w3-ul w3-margin-top w3-margin-bottom">';
     for(i = 0; i < parties.length; i++){
         let partyname = parties[i]['name']
-        let num = Math.floor((100 / stellingen.length) * score_counter[partyname]);
-        let percent = `${num}%`;
-        newHTML += `<li class="result-row">${partyname}<span>${percent}<progress class="w3-margin-left" value="${num}" max="100"></progress></span></li>`;
+        if(partyWeight.includes(partyname)){
+            let num = Math.floor((100 / (stellingen.length + stellingWeight.length)) * score_counter[partyname]);
+            let percent = `${num}%`;
+            newHTML += `<li class="result-row">${partyname}<span>${percent}<progress class="w3-margin-left" value="${num}" max="100"></progress></span></li>`;
+        }      
     }
     newHTML += '</ul>';
     document.querySelector('[logic-container]').innerHTML = newHTML;
